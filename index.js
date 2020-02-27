@@ -9,6 +9,14 @@ app.use(cors());
 // crear el servidor
 const app = express(); // vamos a estar usando middleware
 
+app.all('*', function(req, res, next) {
+    var origin = req.get('origin'); 
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
+
 // conectar a la base de datos
 conectarDB();
 
