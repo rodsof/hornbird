@@ -5,7 +5,7 @@ const conectarDB = async () => {
     try {
         await mongoose.connect(process.env.DB_MONGO, {
             useNewUrlParser: true,
-           // useUnifiedTopology: true,
+            useUnifiedTopology: false,
             useFindAndModify: false,
             serverSelectionTimeoutMS: 5000
         })
