@@ -7,10 +7,10 @@ const conectarDB = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false,
-            serverSelectionTimeoutMS: 5000,
+            serverSelectionTimeoutMS: 5000
         })
     } catch (error) {
-        console.log(error.reason);
+        console.log(error);
         process.exit(1); // detener la app en caso de que haya error en la conexion
     }
 
