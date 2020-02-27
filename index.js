@@ -3,12 +3,12 @@ const conectarDB = require('./config/db')
 const cors = require('cors');
 
 
-// habilitar cors
-app.use(cors());
+
 
 // crear el servidor
 const app = express(); // vamos a estar usando middleware
-
+// habilitar cors
+app.use(cors());
 app.all('*', function(req, res, next) {
     var origin = req.get('origin'); 
     res.header('Access-Control-Allow-Origin', origin);
