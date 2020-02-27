@@ -2,11 +2,10 @@ const mongoose = require('mongoose');
 require('dotenv').config({path: 'variables.env'});
 
 const conectarDB = async () => {
-    console.log(process.env.DB_MONGO);
     try {
         await mongoose.connect(process.env.DB_MONGO, {
             useNewUrlParser: true,
-            useUnifiedTopology: true,
+            //useUnifiedTopology: true,
             useFindAndModify: false
         })
     } catch (error) {
