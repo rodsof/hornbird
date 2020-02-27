@@ -2,14 +2,15 @@ const express = require('express');
 const conectarDB = require('./config/db')
 const cors = require('cors');
 
+
+// habilitar cors
+app.use(cors());
+
 // crear el servidor
 const app = express(); // vamos a estar usando middleware
 
 // conectar a la base de datos
 conectarDB();
-
-// habilitar cors
-app.use(cors());
 
 // habilitar express.json para leer datos que el usuario coloque
 app.use(express.json({ extended:true }));
