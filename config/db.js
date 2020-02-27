@@ -6,10 +6,11 @@ const conectarDB = async () => {
         await mongoose.connect(process.env.DB_MONGO, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useFindAndModify: false
+            useFindAndModify: false,
+            serverSelectionTimeoutMS: 5000,
         })
     } catch (error) {
-        console.log(error);
+        console.log(error.reason);
         process.exit(1); // detener la app en caso de que haya error en la conexion
     }
 
