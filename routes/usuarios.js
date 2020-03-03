@@ -13,4 +13,9 @@ router.post('/',
 ],
     usuarioController.crearUsuario
 );
+
+router.get('/',
+    usuarioController.getUsuarios
+);
+
 module.exports = router;

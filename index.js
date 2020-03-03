@@ -31,12 +31,13 @@ app.use('/api/usuarios',require('./routes/usuarios'));
 app.use('/api/auth',require('./routes/auth')); 
 app.use('/api/charts',require('./routes/charts')); 
 app.use('/api/items',require('./routes/items')); 
+app.use('/api/dataset',require('./routes/dataset'));
 
 
 
 
 // start app
 // for deployment on heroku '0.0.0.0',
-app.listen(port,  () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`Server is running at ${port}`);
 });

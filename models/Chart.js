@@ -5,14 +5,6 @@ const ChartSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Item'
     },
-    value: {
-        type: Number,
-        required: true,
-    },
-    date: {
-        type: Date,
-        required: true
-    },
     name: {
         type: String,
         required: true,

@@ -15,7 +15,7 @@ exports.crearUsuario = async(req, res) => {
         // revisar que el usuario registrado sea unico
 
         let usuario = await Usuario.findOne({email});
-        if (usuario) {
+        if (!usuario) {
             return res.status(400).json({msg: "The user doesn't exist"});
         }
 
@@ -52,4 +52,14 @@ exports.crearUsuario = async(req, res) => {
         console.log(error);
         res.status(400).send('Hubo un error');
     }
+}
+
+exports.getUsuarios = async (req, res) => {
+    try {
+        const users = await Usuario.find().sort({ name: -1 });; // chart itemid must be equal to item id
+        res.json({ users });
+      } catch (error) {
+        console.log(error);
+        res.status(500).send("Error");
+      }
 }
