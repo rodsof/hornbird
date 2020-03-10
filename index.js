@@ -32,7 +32,7 @@ app.use('/api/auth',require('./routes/auth'));
 app.use('/api/charts',require('./routes/charts')); 
 app.use('/api/items',require('./routes/items')); 
 app.use('/api/dataset',require('./routes/dataset'));
-
+app.use('/api/alarms',require('./routes/alarms'));
 
 
 
