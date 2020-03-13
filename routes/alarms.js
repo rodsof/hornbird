@@ -6,4 +6,15 @@ router.post('/',
     auth,
     alarmController.sendEmail
 );
+
+router.get('/',
+    auth,
+    alarmController.getAlarms
+)
+
+router.post('/addAlarms',
+    auth,
+    alarmController.createAlarm
+);
+
 module.exports = router;
