@@ -18,6 +18,9 @@ const AlarmSchema = mongoose.Schema({
   },
   assignDate: {
     type: Date
+  },
+  closeDate: {
+    type: Date
   }
 });
 

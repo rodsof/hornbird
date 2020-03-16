@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 const Alarm = require('../models/Alarm');
-
-
+const Usuario = require('../models/Usuario');
 
 
 exports.sendEmail = async (req, res) => {
@@ -9,7 +8,7 @@ exports.sendEmail = async (req, res) => {
         service: 'Gmail',
        auth: {
            user: 'rodriguezsofiaf@gmail.com',
-           pass: 'Universidad17'
+           pass: 'Rs220823'
        }
     });
 
@@ -26,14 +25,15 @@ exports.sendEmail = async (req, res) => {
             return res.send(error);
         }
         else{
-         //   res.send('Message sent');
+            let email = req.body.email;
+            let usuario = Usuario.find({email: email}, { "name": 1});
+            let name = usuario.name;
+            let update = { assignTo : name , assignDate :  Date.now()};
+            let alarm = Alarm.findOneAndUpdate(email,update);
+            res.send('Message sent');
         }
     });
-  
-        let id = { _id : req.body.id};
-        let userName = req.body.userName;
-        let update = { assignTo : userName , assignDate :  Date.now()};
-        let alarm = await Alarm.findOneAndUpdate(id,update);
+    
 }
 
 exports.createAlarm = async(req, res) => {
@@ -55,7 +55,7 @@ exports.createAlarm = async(req, res) => {
 
 exports.getAlarms = async (req, res) => {
     try {
-        const alarms = await Alarm.find().sort({ date: -1 });
+        const alarms = await Alarm.find().sort({ date: 1 });
         res.json({ alarms });
 
       } catch (error) {

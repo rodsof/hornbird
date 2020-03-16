@@ -3,6 +3,7 @@ const bcryptjs = require('bcryptjs');
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 exports.crearUsuario = async(req, res) => {
+
     // revisar si hay errores
     const errores = validationResult(req); // validation result devuelve arreglo de errores
     if (!errores.isEmpty()){
@@ -15,8 +16,8 @@ exports.crearUsuario = async(req, res) => {
         // revisar que el usuario registrado sea unico
 
         let usuario = await Usuario.findOne({email});
-        if (!usuario) {
-            return res.status(400).json({msg: "The user doesn't exist"});
+        if (usuario) {
+            return res.status(400).json({msg: "The user already exists"});
         }
 
 
@@ -50,7 +51,7 @@ exports.crearUsuario = async(req, res) => {
         
     } catch (error) {
         console.log(error);
-        res.status(400).send('Hubo un error');
+        res.status(400).send('Error');
     }
 }
 
