@@ -15,15 +15,15 @@ exports.sendEmail = async (req, res) => {
     let mailOptions = {
         from: "info@hornbird.com",
         to: `${req.body.email}`,
-        subject: `Hi ${req.body.name}`,
+        subject: `ALARM ASSIGNED TO YOU`,
         html: `<b>Email: ${req.body.email}</b><br/> 
         <b>Message:</b><br/>${req.body.message}`
     };
 
     let id = req.body.id;
-            let name = req.body.name;
+            let email = req.body.email;
             //, assignDate :  Date.now()
-            let update = { assignTo : name, assignDate :  Date.now() };
+            let update = { assignTo : email, assignDate :  Date.now() };
             let filter = {_id : id};
             let alarm = await Alarm.findOneAndUpdate(filter,{$set: update });
             let thisAlarm = await Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
