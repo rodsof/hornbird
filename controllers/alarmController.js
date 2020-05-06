@@ -26,8 +26,8 @@ exports.sendEmail = async (req, res) => {
     };
 
     let id = req.body.id;
-            let email = req.body.email;           
-
+    let email = req.body.email;           
+    console.log("attempting to send from "+process.env.email);
     transporter.sendMail(mailOptions, (error) => {
         if (error) {
             return res.send(error);
