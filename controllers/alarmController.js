@@ -1,19 +1,13 @@
 const nodemailer = require('nodemailer');
 const Alarm = require('../models/Alarm');
-const Usuario = require('../models/Usuario');
 
 
 exports.sendEmail = async (req, res) => {
     let transporter = nodemailer.createTransport({
         service: 'Gmail',
        auth: {
-<<<<<<< HEAD
            user: process.env.email,
            pass: process.env.password
-=======
-           user: 'rodriguezsofiaf@gmail.com',
-           pass: 'Rs220823'
->>>>>>> 3aab1d78a377df1b91530b36b86c7d425deb49dc
        }
     });
 
