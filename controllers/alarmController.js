@@ -5,10 +5,17 @@ const datasetController = require('./datasetController');
 exports.sendEmail = async (req, res) => {
     let transporter = nodemailer.createTransport({
         service: 'Gmail',
+        host: 'host',
+        port: 25,
+        secure : false, // true for 465, false for other ports
        auth: {
            user: process.env.email,
            pass: process.env.password
-       }
+       },
+       tls: {
+        // do not fail on invalid certs
+        rejectUnauthorized: false
+    }
     });
     let mailOptions = {
         from: process.env.email,
@@ -20,7 +27,6 @@ exports.sendEmail = async (req, res) => {
 
     let id = req.body.id;
     let email = req.body.email;           
-    console.log("attempting to send from "+process.env.email+process.env.password);
     transporter.sendMail(mailOptions, (error) => {
         if (error) {
             return res.send(error);
@@ -29,6 +35,7 @@ exports.sendEmail = async (req, res) => {
             let update = { assignTo : email, assignDate :  Date.now() };
             let filter = {_id : id};
             let alarm = Alarm.findOneAndUpdate(filter,{$set: update });
+            console.log(alarm);
             let thisAlarm = Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
             res.send('Message sent');
         }
