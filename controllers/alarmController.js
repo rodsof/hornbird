@@ -1,39 +1,43 @@
 const nodemailer = require('nodemailer');
 const Alarm = require('../models/Alarm');
-
-
+const Usuario = require('../models/Usuario');
 
 
 exports.sendEmail = async (req, res) => {
     let transporter = nodemailer.createTransport({
         service: 'Gmail',
        auth: {
-           user: 'rodriguezsofiaf@gmail.com',
-           pass: 'Universidad17'
+           user: process.env.email,
+           pass: process.env.password
        }
     });
 
     let mailOptions = {
-        from: "HORNBIRD",
+        from: "info@hornbird.com",
         to: `${req.body.email}`,
-        subject: `Hi ${req.body.name}`,
+        subject: `ALARM ASSIGNED TO YOU`,
         html: `<b>Email: ${req.body.email}</b><br/> 
         <b>Message:</b><br/>${req.body.message}`
     };
+
+    let id = req.body.id;
+            let email = req.body.email;
+            //, assignDate :  Date.now()
+            let update = { assignTo : email, assignDate :  Date.now() };
+            let filter = {_id : id};
+            let alarm = await Alarm.findOneAndUpdate(filter,{$set: update });
+            let thisAlarm = await Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
 
     transporter.sendMail(mailOptions, (error) => {
         if (error) {
             return res.send(error);
         }
         else{
-         //   res.send('Message sent');
+            
+            res.send('Message sent');
         }
     });
-  
-        let id = { _id : req.body.id};
-        let userName = req.body.userName;
-        let update = { assignTo : userName , assignDate :  Date.now()};
-        let alarm = await Alarm.findOneAndUpdate(id,update);
+    
 }
 
 exports.createAlarm = async(req, res) => {
@@ -55,7 +59,7 @@ exports.createAlarm = async(req, res) => {
 
 exports.getAlarms = async (req, res) => {
     try {
-        const alarms = await Alarm.find().sort({ date: -1 });
+        const alarms = await Alarm.find().sort({ date: 1 });
         res.json({ alarms });
 
       } catch (error) {

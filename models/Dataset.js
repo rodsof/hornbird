@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const DatasetSchema = mongoose.Schema({
   date: {
-    type: String,
+    type: Date,
     default: Date.now
   },
   chwtin: {
-    type: String,
+    type: Number,
     required: false
   },
   chwtout: {

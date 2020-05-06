@@ -5,7 +5,11 @@ const auth = require("../middleware/auth");
 
 // api/dataset
 router.get('/', 
-//auth,
+auth,
 datasetController.getDataset);
+
+router.post('/',
+datasetController.createDataset
+);
 
 module.exports = router;
