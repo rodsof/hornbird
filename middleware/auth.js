@@ -7,7 +7,7 @@ module.exports = function(req, res, next){
 
     // revisar si no hay token
     if (!token){
-        return res.status(401).json({msg: 'No hay token, permiso no válido'});
+        return res.status(401).json({msg: 'YOU ARE NOT ALLOWED TO ACCESS HERE, please login'});
     }
 
     // validar el token

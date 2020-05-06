@@ -4,8 +4,6 @@ const Item = require('../models/Item');
 exports.getItems = async (req, res) => {
     try {
         let items = await Item.find().sort({_id: -1});
-        console.log("entra");
-        console.log(items);
         res.json({ items });
     } catch (error) {
         console.log(error);

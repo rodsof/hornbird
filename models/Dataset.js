@@ -99,6 +99,10 @@ energymonthly: {
   space: {
     type: Number,
     required: false
+  },
+  "dT Air, C" : { // OJO
+    type: Number,
+    default: 20
   }
 });
 

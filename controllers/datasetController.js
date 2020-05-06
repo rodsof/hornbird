@@ -12,15 +12,15 @@ exports.getDataset = async (req, res) => {
 }
 
 exports.createDataset = async (req, res) => {
-
-  for ( var i=0; i<req.body.length ; i++){
+  for(var key in req.body) {
     setTimeout (function () {
                // crear 
-               dataset = new Dataset(req.body[i]);
+               dataset = new Dataset(req.body[key]);
                // guardar 
+               console.log(dataset);
                dataset.save();
       
-  }, 30000)
+  }, 100000)
 }
 }
 
