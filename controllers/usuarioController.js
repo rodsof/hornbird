@@ -3,6 +3,7 @@ const bcryptjs = require('bcryptjs');
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 exports.crearUsuario = async(req, res) => {
+
     // revisar si hay errores
     const errores = validationResult(req); // validation result devuelve arreglo de errores
     if (!errores.isEmpty()){
@@ -15,8 +16,8 @@ exports.crearUsuario = async(req, res) => {
         // revisar que el usuario registrado sea unico
 
         let usuario = await Usuario.findOne({email});
-        if (!usuario) {
-            return res.status(400).json({msg: "The user doesn't exist"});
+        if (usuario) {
+            return res.status(400).json({msg: "The user already exists"});
         }
 
 
@@ -29,28 +30,9 @@ exports.crearUsuario = async(req, res) => {
 
         // guardar usuario
         await usuario.save();
-
-        // crear y firmar el jwt
-        const payload = { // esta es la informacion que va a guardar el jwt
-            usuario : {
-                id: usuario.id
-            }
-        };
-
-        // firmar el jwt
-        jwt.sign(payload, process.env.SECRETA, {
-            expiresIn: 3600 // una hora
-        },(error, token) => {
-            if(error) throw error;
-
-            // mensaje de confirmacion
-        res.json({ token });
-        });
-
-        
     } catch (error) {
         console.log(error);
-        res.status(400).send('Hubo un error');
+        res.status(400).send('Error');
     }
 }
 
@@ -62,4 +44,25 @@ exports.getUsuarios = async (req, res) => {
         console.log(error);
         res.status(500).send("Error");
       }
+}
+
+
+exports.deleteMember = async (req, res) => {
+    try {
+        // Extraer el proyecto y comprobar si existe
+        // Si la tarea existe o no
+        let usuario = await Usuario.findById(req.params.id);
+
+        if(!usuario) {
+            return res.status(404).json({msg: 'Inexistent User'});
+        }
+
+        // Delete
+        await Usuario.findOneAndRemove({_id: req.params.id});
+        res.json({msg: 'Deleted'})
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error')
+    }
 }
