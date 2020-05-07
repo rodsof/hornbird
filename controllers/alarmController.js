@@ -13,10 +13,8 @@ exports.sendEmail = async (req, res) => {
            pass: process.env.password
        }
     });
-
-    console.log(process.env.email + " pass " + process.env.password);
     let mailOptions = {
-        from: 'Hornbird Technology',
+        from: process.env.email,
         to: `${req.body.email}`,
         subject: `ALARM ASSIGNED TO YOU`,
         html: `<b>Email: ${req.body.email}</b><br/> 
@@ -27,6 +25,7 @@ exports.sendEmail = async (req, res) => {
     let email = req.body.email;           
     transporter.sendMail(mailOptions, (error) => {
         if (error) {
+            console.log(error);
             return res.send(error);
         }
         else{
