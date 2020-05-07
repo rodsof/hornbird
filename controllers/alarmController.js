@@ -27,7 +27,6 @@ exports.sendEmail = async (req, res) => {
 
     let id = req.body.id;
     let email = req.body.email;           
-    console.log("attempting to send from "+process.env.email+process.env.password);
     transporter.sendMail(mailOptions, (error) => {
         if (error) {
             return res.send(error);
@@ -36,6 +35,7 @@ exports.sendEmail = async (req, res) => {
             let update = { assignTo : email, assignDate :  Date.now() };
             let filter = {_id : id};
             let alarm = Alarm.findOneAndUpdate(filter,{$set: update });
+            console.log(alarm);
             let thisAlarm = Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
             res.send('Message sent');
         }
