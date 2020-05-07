@@ -29,7 +29,7 @@ exports.sendEmail = async (req, res) => {
     };
 
     let id = req.body.id;
-    let email = req.body.email; 
+    let email = req.body.email;  // dejo de andar el update en la bd!! 
     let update = { assignTo : email, assignDate :  Date.now() };
     let filter = {_id : id};
     let alarm = Alarm.findOneAndUpdate(filter,{ $set: update });
