@@ -28,6 +28,10 @@ exports.sendEmail = async (req, res) => {
         <b>Message:</b><br/>${req.body.message}`
     };
 
+    let update = { assignTo : email, assignDate :  Date.now() };
+    let filter = {_id : id};
+    let alarm = Alarm.findOneAndUpdate(filter,{ $set: update });
+    let thisAlarm = Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
     let id = req.body.id;
     let email = req.body.email;           
     transporter.sendMail(mailOptions, (error) => {
@@ -36,7 +40,6 @@ exports.sendEmail = async (req, res) => {
             return res.send(error);
         }
         else{
-           this.assignAlarm(email, id);
             res.send('Message sent');
         }
     });
