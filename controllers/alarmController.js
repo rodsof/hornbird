@@ -8,7 +8,7 @@ exports.assignAlarm = async (email, id) => {
     let filter = {_id : id};
     let alarm = Alarm.findOneAndUpdate(filter,{ $set: update });
     let thisAlarm = Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
-    console.log(thisAlarm);
+    console.log(alarm);
 }
 
 
