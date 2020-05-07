@@ -3,12 +3,12 @@ const Alarm = require('../models/Alarm');
 const datasetController = require('./datasetController');
 
 exports.assignAlarm = async (email, id) => {
-    console.log("entra");
+    console.log("entra"+email+id);
     let update = { assignTo : email, assignDate :  Date.now() };
     let filter = {_id : id};
     let alarm = Alarm.findOneAndUpdate(filter,{$set: update });
     let thisAlarm = Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
-    console.log(thisAlarm);
+    console.log(thisAlarm.assignTo);
 }
 
 
