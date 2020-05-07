@@ -11,11 +11,7 @@ exports.sendEmail = async (req, res) => {
        auth: {
            user: process.env.email,
            pass: process.env.password
-       },
-       tls: {
-        // do not fail on invalid certs
-        rejectUnauthorized: false
-    }
+       }
     });
     let mailOptions = {
         from: 'Hornbird Technology',
@@ -29,6 +25,7 @@ exports.sendEmail = async (req, res) => {
     let email = req.body.email;           
     transporter.sendMail(mailOptions, (error) => {
         if (error) {
+            console.log(error);
             return res.send(error);
         }
         else{
