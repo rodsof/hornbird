@@ -18,7 +18,7 @@ exports.sendEmail = async (req, res) => {
     }
     });
     let mailOptions = {
-        from: process.env.email,
+        from: 'Hornbird Technology',
         to: `${req.body.email}`,
         subject: `ALARM ASSIGNED TO YOU`,
         html: `<b>Email: ${req.body.email}</b><br/> 
