@@ -109,11 +109,11 @@ energymonthly: {
     default: 30
   },
   "dT CHW, C" : {
-    trype: Number,
+    type: Number,
     default: 10
   },
  "Tin Condenser, C" :{
- trype: Number,
+ type: Number,
     default: 22
  }
 });
