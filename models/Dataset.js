@@ -103,7 +103,19 @@ energymonthly: {
   "dT Air, C" : { // OJO
     type: Number,
     default: 20
-  }
+  },
+  "RA FR, L/s" : {
+    type: Number,
+    default: 30
+  },
+  "dT CHW, C" : {
+    trype: Number,
+    default: 10
+  },
+ "Tin Condenser, C" :{
+ trype: Number,
+    default: 22
+ }
 });
 
 module.exports = mongoose.model("Dataset", DatasetSchema);
