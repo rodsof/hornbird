@@ -13,6 +13,8 @@ exports.sendEmail = async (req, res) => {
            pass: process.env.password
        }
     });
+
+    console.log(process.env.email + " pass " + process.env.password);
     let mailOptions = {
         from: 'Hornbird Technology',
         to: `${req.body.email}`,
