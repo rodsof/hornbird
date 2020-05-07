@@ -2,7 +2,8 @@ const nodemailer = require('nodemailer');
 const Alarm = require('../models/Alarm');
 const datasetController = require('./datasetController');
 
-exports.assignAlarm = async (req,res) => {
+exports.assignAlarm = async (email, id) => {
+    console.log("entra");
     let update = { assignTo : email, assignDate :  Date.now() };
     let filter = {_id : id};
     let alarm = Alarm.findOneAndUpdate(filter,{$set: update });
