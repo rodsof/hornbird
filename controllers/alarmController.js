@@ -34,7 +34,7 @@ exports.sendEmail = async (req, res) => {
             return res.send(error);
         }
         else{
-            this.assignAlarm(email, id);
+           // this.assignAlarm(email, id);
             res.send('Message sent');
         }
     });
