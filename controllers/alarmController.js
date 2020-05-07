@@ -2,6 +2,14 @@ const nodemailer = require('nodemailer');
 const Alarm = require('../models/Alarm');
 const datasetController = require('./datasetController');
 
+exports.assignAlarm = async (req,res) => {
+    let update = { assignTo : email, assignDate :  Date.now() };
+    let filter = {_id : id};
+    let alarm = Alarm.findOneAndUpdate(filter,{$set: update });
+    let thisAlarm = Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
+}
+
+
 exports.sendEmail = async (req, res) => {
     let transporter = nodemailer.createTransport({
         service: 'Gmail',
@@ -26,10 +34,7 @@ exports.sendEmail = async (req, res) => {
             return res.send(error);
         }
         else{
-            let update = { assignTo : email, assignDate :  Date.now() };
-            let filter = {_id : id};
-            let alarm = Alarm.findOneAndUpdate(filter,{$set: update });
-            let thisAlarm = Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
+            this.assignAlarm(email, id);
             res.send('Message sent');
         }
     });
