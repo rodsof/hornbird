@@ -5,9 +5,6 @@ const datasetController = require('./datasetController');
 exports.sendEmail = async (req, res) => {
     let transporter = nodemailer.createTransport({
         service: 'Gmail',
-        host: 'host',
-        port: 25,
-        secure : false, // true for 465, false for other ports
        auth: {
            user: process.env.email,
            pass: process.env.password
