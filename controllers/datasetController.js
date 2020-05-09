@@ -3,7 +3,8 @@ const Dataset = require('../models/Dataset');
 exports.getDataset = async (req, res) => {
     try {
         dataset  = await Dataset.find().sort({ date : -1}).limit(15);
-        console.log(dataset.sort({date : 1}));
+        console.log(dataset);
+        console.log("dado vuelta"+dataset.reverse());
         res.json({ dataset });
         
       } catch (error) {
