@@ -4,6 +4,7 @@ exports.getDataset = async (req, res) => {
     try {
         dataset  = await Dataset.find().sort({ date : -1}).limit(15);
         console.log("dado vuelta"+dataset.reverse());
+        console.log(dataset.length);
         res.json({ dataset });
         
       } catch (error) {
