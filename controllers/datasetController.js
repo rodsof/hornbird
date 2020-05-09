@@ -3,6 +3,7 @@ const Dataset = require('../models/Dataset');
 exports.getDataset = async (req, res) => {
     try {
         dataset  = await Dataset.find().sort({ date : 1}).limit(15);
+        console.log(dataset);
         res.json({ dataset });
         
       } catch (error) {
