@@ -2,7 +2,7 @@ const Dataset = require('../models/Dataset');
 // obtiene todos los proyectos del usuario actual
 exports.getDataset = async (req, res) => {
     try {
-        dataset  = await Dataset.find().limit(15).sort({ date : 1});
+        dataset  = await Dataset.find().reverse().limit(15).sort({ date : 1});
         console.log(dataset);
         res.json({ dataset });
         
