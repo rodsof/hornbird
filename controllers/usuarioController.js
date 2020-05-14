@@ -49,8 +49,7 @@ exports.getUsuarios = async (req, res) => {
 
 exports.deleteMember = async (req, res) => {
     try {
-        // Extraer el proyecto y comprobar si existe
-        // Si la tarea existe o no
+        // check if user exists
         let usuario = await Usuario.findById(req.params.id);
 
         if(!usuario) {
