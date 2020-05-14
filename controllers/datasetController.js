@@ -6,7 +6,7 @@ exports.getDataset = async (req, res) => {
     try {
        // dataset  = await Dataset.find().sort({ date : -1}).limit(15);
        dataset  = await Testing_ai.find().sort({ date : -1});
-
+      dataset.reverse();
         res.json({ dataset });
       } catch (error) {
         console.log(error);
