@@ -8,7 +8,8 @@ exports.getDataset = async (req, res) => {
        dataset  = await Testing_ai.find().sort({ date : -1}).limit(15);
        testing_ai = new Testing_ai();
        console.log(testing_ai);
-       console.log(dataset);
+       console.log(testing_ai);
+       testing_ai.save();
         res.json({ dataset });
       } catch (error) {
         console.log(error);
