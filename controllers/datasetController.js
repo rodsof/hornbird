@@ -5,9 +5,8 @@ const Testing_ai = require('../models/Testing_ai');
 exports.getDataset = async (req, res) => {
     try {
        // dataset  = await Dataset.find().sort({ date : -1}).limit(15);
-       testing_ai  = await Testing_ai.find().sort({ date : -1}).limit(15);
-        res.json({ testing_ai });
-        
+       dataset  = await Testing_ai.find().sort({ date : -1}).limit(15);
+        res.json({ dataset });
       } catch (error) {
         console.log(error);
         res.status(500).send("Error");
