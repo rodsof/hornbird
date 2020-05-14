@@ -56,10 +56,6 @@ totalpower: {
   type: Number,
   required: false
 },
-energymonthly: {
-  type: Number,
-  required: false
-},
   oat: {
     type: Number,
     required: false
