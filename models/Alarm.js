@@ -14,10 +14,12 @@ const AlarmSchema = mongoose.Schema({
     default: Date.now()
   },
   assignTo: {
-    type:String
+    type:String,
+    default: ""
   },
   assignDate: {
-    type: Date
+    type: Date,
+    default: null
   },
   closeDate: {
     type: Date
