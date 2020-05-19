@@ -26,8 +26,8 @@ exports.sendEmail = async (req, res) => {
     let update = { 'assignTo' : email, 'assignDate' :  Date.now() };
     let filter = {_id : o_id};
     let alarm = Alarm.findOneAndUpdate(filter,{ $set: update });
-    let thisalarm = Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
-    console.log(thisalarm);
+    let thisalarm = Alarm.findById(o_id); // to check that it was updated i console.log(thisalarm)
+    console.log(alarm);
             
    transporter.sendMail(mailOptions, (error) => {
         if (error) {
