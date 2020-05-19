@@ -20,10 +20,9 @@ exports.sendEmail = async (req, res) => {
 
     let id = req.body.id;
     let email = req.body.email;  // dejo de andar el update en la bd!! 
-    console.log(id, email);
+    var o_id = new ObjectId(id);
     let update = { 'assignTo' : email, 'assignDate' :  Date.now() };
-    console.log(update);
-    let filter = {_id : id};
+    let filter = {_id : o_id};
     let alarm = Alarm.findOneAndUpdate(filter,{ $set: update });
     let thisalarm = Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
     console.log(thisalarm);
