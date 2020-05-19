@@ -21,7 +21,7 @@ exports.sendEmail = async (req, res) => {
     let id = req.body.id;
     let email = req.body.email;  // dejo de andar el update en la bd!! 
     console.log(id, email);
-    let update = { assignTo : email, assignDate :  Date.now() };
+    let update = { 'assignTo' : email, 'assignDate' :  Date.now() };
     console.log(update);
     let filter = {_id : id};
     let alarm = Alarm.findOneAndUpdate(filter,{ $set: update });
