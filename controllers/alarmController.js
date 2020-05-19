@@ -2,14 +2,6 @@ const nodemailer = require('nodemailer');
 const Alarm = require('../models/Alarm');
 const datasetController = require('./datasetController');
 
-exports.assignAlarm = async (email, id) => {
-    console.log("entra"+email+id);
-    let update = { assignTo : email, assignDate :  Date.now() };
-    let filter = {_id : id};
-    let alarm = Alarm.findOneAndUpdate(filter,{ $set: update });
-    let thisAlarm = Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
-    console.log(alarm);
-}
 
 
 exports.sendEmail = async (req, res) => {
@@ -32,18 +24,23 @@ exports.sendEmail = async (req, res) => {
     let email = req.body.email;  // dejo de andar el update en la bd!! 
     let update = { assignTo : email, assignDate :  Date.now() };
     let filter = {_id : id};
-    let alarm = Alarm.findOneAndUpdate(filter,{ $set: update });
-    let thisAlarm = Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
+    var success = false;
             
-    transporter.sendMail(mailOptions, (error) => {
+   transporter.sendMail(mailOptions, (error) => {
         if (error) {
             console.log(error);
             return res.send(error);
         }
         else{
+            success = true;
             res.send('Message sent');
         }
     });
+    if (success){
+    let alarm = await Alarm.findOneAndUpdate(filter,{ $set: update });
+    let thisAlarm = Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
+    console.log(thisalarm)
+    }
     
 }
 
