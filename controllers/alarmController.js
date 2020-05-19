@@ -20,6 +20,8 @@ exports.sendEmail = async (req, res) => {
 
     let id = req.body.id;
     let email = req.body.email;  // dejo de andar el update en la bd!! 
+    var ObjectId = require('mongodb').ObjectId; 
+
     var o_id = new ObjectId(id);
     let update = { 'assignTo' : email, 'assignDate' :  Date.now() };
     let filter = {_id : o_id};
