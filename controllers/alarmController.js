@@ -33,15 +33,16 @@ exports.sendEmail = async (req, res) => {
         }
         else{
             success = true;
+            if (success){
+                let alarm = Alarm.findOneAndUpdate(filter,{ $set: update });
+                let thisAlarm = Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
+                console.log(thisalarm)
+                }
+                
             res.send('Message sent');
         }
     });
-    if (success){
-    let alarm = await Alarm.findOneAndUpdate(filter,{ $set: update });
-    let thisAlarm = Alarm.findById(id); // to check that it was updated i console.log(thisalarm)
-    console.log(thisalarm)
-    }
-    
+   
 }
 
 exports.createAlarm = async(req, res) => {
