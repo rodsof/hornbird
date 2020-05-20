@@ -32,7 +32,7 @@ exports.sendEmail = async (req, res) => {
    transporter.sendMail(mailOptions, (error) => {
         if (error) {
             console.log(error);
-            return res.send(error);
+            return  res.status(500).send("Error");
         }
         else{        
             res.send('Message sent');
